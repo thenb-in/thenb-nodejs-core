@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { TextField, Button, Typography, Grid } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
-import { REACT_APP_API_BASE_URL } from '../../constants';
 
 const Signup = () => {
     const [formData, setFormData] = useState({

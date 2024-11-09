@@ -1,8 +1,8 @@
 // src/client/components/AuthRoutes.js
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Login from './Login';
-import Signup from './Signup';
+import Login from './Auth/Login';
+import Signup from './Auth/Signup';
 
 const AuthRoutes = ({ basePath = '/auth' }) => {
     return (

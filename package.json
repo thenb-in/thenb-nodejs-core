@@ -3,10 +3,31 @@
   "version": "0.0.1",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "npx babel src --out-dir dist --copy-files",
+    "prepare": "npm run build"
+  },
+  "exports": {
+    ".": {
+      "require": "./dist/server",
+      "import": "./dist/client"
+    },
+    "./server": "./dist/server",
+    "./client": "./dist/client"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": ""
+  "description": "",
+  "devDependencies": {
+    "@babel/cli": "^7.25.9",
+    "@babel/core": "^7.26.0",
+    "@babel/preset-env": "^7.26.0",
+    "@babel/preset-react": "^7.25.9"
+  },
+  "peerDependencies": {
+    "react": "^17.0.0 || ^18.0.0",
+    "react-router-dom": "^5.2.0 || ^6.0.0",
+    "@mui/material": "^5.0.0"
+  }
 }
