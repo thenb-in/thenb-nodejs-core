@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { TextField, Button, Typography, Grid } from '@mui/material';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { API_BASE_URL } from '../../constants';
+import { REACT_APP_API_BASE_URL } from '../../constants';
 
 const Login = () => {
     const [formData, setFormData] = useState({ username: '', password: '' });
@@ -19,7 +19,7 @@ const Login = () => {
         e.preventDefault();
         setError('');
         
-        fetch(`${API_BASE_URL}/api/users/login`, {
+        fetch(`${REACT_APP_API_BASE_URL}/api/users/login`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(formData),

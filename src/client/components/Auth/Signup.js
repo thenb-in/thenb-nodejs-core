@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { TextField, Button, Typography, Grid } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
-import { API_BASE_URL } from '../../constants';
+import { REACT_APP_API_BASE_URL } from '../../constants';
 
 const Signup = () => {
     const [formData, setFormData] = useState({
@@ -28,7 +28,7 @@ const Signup = () => {
             return;
         }
 
-        fetch(`${API_BASE_URL}/api/users/signup`, {
+        fetch(`${REACT_APP_API_BASE_URL}/api/users/signup`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({

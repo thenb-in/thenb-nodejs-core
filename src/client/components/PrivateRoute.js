@@ -7,15 +7,15 @@ import { getConfig } from '../../config';
 const PrivateRoute = ({ element: Element, ...rest }) => {
     const [isUserAuthenticated, setIsUserAuthenticated] = useState(null);
     const location = useLocation();
-    const { API_BASE_URL } = getConfig();
+    const { REACT_APP_API_BASE_URL } = getConfig();
 
     useEffect(() => {
         const checkAuth = async () => {
-            const authStatus = await isAuthenticated(API_BASE_URL); // Pass API_BASE_URL if needed
+            const authStatus = await isAuthenticated(REACT_APP_API_BASE_URL); // Pass REACT_APP_API_BASE_URL if needed
             setIsUserAuthenticated(authStatus);
         };
         checkAuth();
-    }, [API_BASE_URL]);
+    }, [REACT_APP_API_BASE_URL]);
 
     // Display loading state while authentication status is being checked
     if (isUserAuthenticated === null) {
