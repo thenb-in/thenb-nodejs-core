@@ -1,6 +1,6 @@
 {
-  "name": "thenb-nodejs-core",
-  "version": "0.0.1",
+  "name": "thenb-core-nodejs-reactjs",
+  "version": "0.0.2",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
