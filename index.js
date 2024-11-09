@@ -1,11 +1,15 @@
-const { createORMAdapter } = require('./src/server/orm');
-const authMiddleware = require('./src/server/auth/authMiddleware');
-// const config = require('./config/config');
+// src/index.js
+const { init } = require('./config');
+const authMiddleware = require('./server/auth/authMiddleware');
+const AuthService = require('./server/auth/authService');
+const createAuthRouter = require('./server/auth/router');
 
-function initializeApp() {
-    // const orm = createORMAdapter(config.db.type, config.db);
-    // orm.connect();
-    return { orm, authMiddleware };
-}
-
-module.exports = initializeApp;
+module.exports = {
+    init,
+    authMiddleware,
+    AuthService,
+    createAuthRouter, // Export the configurable router creator
+    PrivateRoute: require('./client/components/PrivateRoute').default,
+    Login: require('./client/components/Login').default,
+    Signup: require('./client/components/Signup').default,
+};

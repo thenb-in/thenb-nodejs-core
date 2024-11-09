@@ -1,12 +1,16 @@
+// src/server/auth/authService.js
 const jwt = require('jsonwebtoken');
+const { getConfig } = require('../../config');
 
 class AuthService {
     static generateToken(user) {
-        return jwt.sign({ id: user.id, role: user.role }, process.env.JWT_SECRET, { expiresIn: '1h' });
+        const { JWT_SECRET } = getConfig();
+        return jwt.sign({ id: user.id, role: user.role }, JWT_SECRET, { expiresIn: '1h' });
     }
 
     static verifyToken(token) {
-        return jwt.verify(token, process.env.JWT_SECRET);
+        const { JWT_SECRET } = getConfig();
+        return jwt.verify(token, JWT_SECRET);
     }
 }
 

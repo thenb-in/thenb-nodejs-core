@@ -1,3 +1,4 @@
+// src/client/components/Login.js
 import React, { useState } from 'react';
 import { TextField, Button, Typography, Grid } from '@mui/material';
 import { useNavigate, useLocation } from 'react-router-dom';
@@ -34,45 +35,22 @@ const Login = () => {
                 localStorage.setItem('token', data.token);
                 navigate(location.state?.from || '/', { replace: true });
             })
-            .catch((err) => {
-                setError(err.message);
-            });
+            .catch((err) => setError(err.message));
     };
 
     return (
         <form onSubmit={handleSubmit} noValidate>
             <Grid container spacing={2}>
                 <Grid item xs={12}>
-                    <TextField
-                        label="Username"
-                        name="username"
-                        value={formData.username}
-                        onChange={handleChange}
-                        fullWidth
-                        required
-                    />
+                    <TextField label="Username" name="username" value={formData.username} onChange={handleChange} fullWidth required />
                 </Grid>
                 <Grid item xs={12}>
-                    <TextField
-                        label="Password"
-                        name="password"
-                        type="password"
-                        value={formData.password}
-                        onChange={handleChange}
-                        fullWidth
-                        required
-                    />
+                    <TextField label="Password" name="password" type="password" value={formData.password} onChange={handleChange} fullWidth required />
                 </Grid>
                 <Grid item xs={12}>
-                    <Button type="submit" variant="contained" color="primary" fullWidth>
-                        Login
-                    </Button>
+                    <Button type="submit" variant="contained" color="primary" fullWidth>Login</Button>
                 </Grid>
-                {error && (
-                    <Grid item xs={12}>
-                        <Typography color="error">{error}</Typography>
-                    </Grid>
-                )}
+                {error && <Grid item xs={12}><Typography color="error">{error}</Typography></Grid>}
             </Grid>
         </form>
     );
