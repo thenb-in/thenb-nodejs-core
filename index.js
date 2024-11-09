@@ -8,7 +8,8 @@ module.exports = {
     init,
     authMiddleware,
     AuthService,
-    createAuthRouter, // Export the configurable router creator
+    createAuthRouter,
+    AuthRoutes: require('./client/components/AuthRoutes').default,
     PrivateRoute: require('./client/components/PrivateRoute').default,
     Login: require('./client/components/Login').default,
     Signup: require('./client/components/Signup').default,
