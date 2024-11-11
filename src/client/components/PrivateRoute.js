@@ -4,7 +4,7 @@ import { Navigate, useLocation } from 'react-router-dom';
 import { isAuthenticated } from '../utils/auth';
 import { getConfig } from '../../config';
 
-const PrivateRoute = ({ element: Element, ...rest }) => {
+const PrivateRoute = ({ component: Component, ...rest }) => {
     const [isUserAuthenticated, setIsUserAuthenticated] = useState(null);
     const location = useLocation();
     const { REACT_APP_API_BASE_URL } = getConfig();
@@ -28,8 +28,8 @@ const PrivateRoute = ({ element: Element, ...rest }) => {
         return <Navigate to="/auth" state={{ from: location }} replace />;
     }
 
-    // If authenticated, render the element
-    return <Element {...rest} />;
+    // If authenticated, render the component
+    return <Component {...rest} />;
 };
 
 export default PrivateRoute;
