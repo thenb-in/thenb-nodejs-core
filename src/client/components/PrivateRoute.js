@@ -11,7 +11,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
 
     useEffect(() => {
         const checkAuth = async () => {
-            const authStatus = await isAuthenticated(REACT_APP_API_BASE_URL); // Pass REACT_APP_API_BASE_URL if needed
+            const authStatus = await isAuthenticated(REACT_APP_API_BASE_URL);
             setIsUserAuthenticated(authStatus);
         };
         checkAuth();
@@ -25,7 +25,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
     // If not authenticated, redirect to /auth
     if (!isUserAuthenticated) {
         console.log('User is not authenticated. Redirecting to /auth');
-        return <Navigate to="/auth" state={{ from: location }} replace />;
+        return <Navigate to="/auth/login" state={{ from: location }} replace />;
     }
 
     // If authenticated, render the component
