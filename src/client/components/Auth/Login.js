@@ -1,23 +1,46 @@
 // src/client/components/Login.js
+
 import React, { useState } from 'react';
 import { TextField, Button, Typography, Grid } from '@mui/material';
 import { useNavigate, useLocation } from 'react-router-dom';
 
+/**
+ * Login form component.
+ *
+ * Renders a Material UI form with username and password fields. On submission,
+ * sends credentials to `{REACT_APP_API_BASE_URL}/api/users/login` via POST.
+ * On success, stores the returned JWT in `localStorage` and navigates to the
+ * previous location (or `/` by default). Displays inline error messages on failure.
+ *
+ * @component
+ * @returns {React.ReactElement} The rendered login form.
+ */
 const Login = () => {
+    /** @type {[{username: string, password: string}, Function]} */
     const [formData, setFormData] = useState({ username: '', password: '' });
+    /** @type {[string, Function]} */
     const [error, setError] = useState('');
     const navigate = useNavigate();
     const location = useLocation();
 
+    /**
+     * Updates form state when an input field value changes.
+     * @param {React.ChangeEvent<HTMLInputElement>} e - The change event from the input field.
+     */
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData((prevData) => ({ ...prevData, [name]: value }));
     };
 
+    /**
+     * Handles form submission. Sends login credentials to the API,
+     * stores the JWT on success, and navigates to the intended destination.
+     * @param {React.FormEvent<HTMLFormElement>} e - The form submit event.
+     */
     const handleSubmit = (e) => {
         e.preventDefault();
         setError('');
-        
+
         fetch(`${REACT_APP_API_BASE_URL}/api/users/login`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },

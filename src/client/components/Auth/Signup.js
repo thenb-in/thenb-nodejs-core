@@ -2,26 +2,49 @@ import React, { useState } from 'react';
 import { TextField, Button, Typography, Grid } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 
+/**
+ * Signup form component.
+ *
+ * Renders a Material UI registration form with username, mobile number,
+ * password, and confirm-password fields. Validates that passwords match
+ * before submitting. On success, displays a confirmation message and
+ * redirects to the login page after 2 seconds.
+ *
+ * @component
+ * @returns {React.ReactElement} The rendered signup form.
+ */
 const Signup = () => {
+    /** @type {[{username: string, mobile_number: string, password: string, confirmPassword: string}, Function]} */
     const [formData, setFormData] = useState({
         username: '',
         mobile_number: '',
         password: '',
         confirmPassword: '',
     });
+    /** @type {[string, Function]} */
     const [error, setError] = useState('');
+    /** @type {[string, Function]} */
     const [success, setSuccess] = useState('');
     const navigate = useNavigate();
 
+    /**
+     * Updates form state when an input field value changes.
+     * @param {React.ChangeEvent<HTMLInputElement>} e - The change event from the input field.
+     */
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData((prevData) => ({ ...prevData, [name]: value }));
     };
 
+    /**
+     * Handles form submission. Validates password match, sends registration
+     * data to the API, and handles success/error feedback.
+     * @param {React.FormEvent<HTMLFormElement>} e - The form submit event.
+     */
     const handleSubmit = (e) => {
         e.preventDefault();
         setError('');
-        
+
         if (formData.password !== formData.confirmPassword) {
             setError('Passwords do not match');
             return;
